@@ -4,8 +4,7 @@
     <haxelib name="lime"/>
     <haxelib name="flixel"/>
 
-	<app title="ALE Flixel" file="ALEFlixel" packageName="com.alefoundation.aleflixel" package="com.alefoundation.aleflixel" version="0.0.1" company="ALEFoundation"/>
-    <app main="ale.flixel.AleMain"/>
+	<app title="ALE Flixel" file="ALEFlixel" main="ale.flixel.AleMain" packageName="com.alefoundation.aleflixel" package="com.alefoundation.aleflixel" version="0.0.1" company="ALEFoundation"/>
 
 	<window width="1280" height="720" fps="120" background="#000000" hardware="true" vsync="false"/>
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true"/>

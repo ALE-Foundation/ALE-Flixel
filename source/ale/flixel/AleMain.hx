@@ -8,6 +8,9 @@ class AleMain extends Sprite
     {
         super();
 
-        addChild(new AleGame());
+        init();
     }
+
+    public function init()
+        addChild(new AleGame());
 }
