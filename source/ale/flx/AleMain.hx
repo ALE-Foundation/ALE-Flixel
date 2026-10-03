@@ -1,4 +1,4 @@
-package ale.flixel;
+package ale.flx;
 
 import openfl.display.Sprite;
 

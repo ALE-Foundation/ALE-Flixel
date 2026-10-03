@@ -1,4 +1,4 @@
-package ale.flixel.assets;
+package ale.flx.assets;
 
 import openfl.utils.AssetManifest;
 import openfl.utils.AssetLibrary;
@@ -10,7 +10,7 @@ import lime.utils.Assets;
 import lime.utils.Bytes;
 import lime.text.Font;
 
-#if ALE_FLX_MODDING
+#if sys
 import sys.FileSystem;
 import sys.io.File;
 #end
@@ -47,7 +47,7 @@ class AleAssetsLibrary extends AssetLibrary
 
     override public function getPath(uPath:String):String
     {
-        #if ALE_FLX_MODDING
+        #if sys
         for (root in roots)
         {
             final path = Path.join([root, uPath]);
@@ -118,7 +118,7 @@ class AleAssetsLibrary extends AssetLibrary
 
     override public function getBytes(id:String):Bytes
     {
-        #if ALE_FLX_MODDING
+        #if sys
         final path = getPath(id);
 
         if (path != null)
@@ -130,7 +130,7 @@ class AleAssetsLibrary extends AssetLibrary
 
     override public function getText(id:String):String
     {
-        #if ALE_FLX_MODDING
+        #if sys
         final path = getPath(id);
 
         if (path != null)
@@ -149,7 +149,7 @@ class AleAssetsLibrary extends AssetLibrary
 
     override public function getImage(id:String):Image
     {
-        #if ALE_FLX_MODDING
+        #if sys
         final path = getPath(id);
 
         if (path != null)
@@ -161,7 +161,7 @@ class AleAssetsLibrary extends AssetLibrary
 
     override public function getFont(id:String):Font
     {
-        #if ALE_FLX_MODDING
+        #if sys
         final path = getPath(id);
 
         if (path != null)

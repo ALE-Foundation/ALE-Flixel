@@ -1,4 +1,4 @@
-package ale.flixel.assets;
+package ale.flx.assets;
 
 import flixel.graphics.FlxGraphic;
 import flixel.FlxG;

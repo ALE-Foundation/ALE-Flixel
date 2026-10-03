@@ -1,10 +1,10 @@
-package ale.flixel;
+package ale.flx;
 
 import flixel.util.typeLimit.OneOfTwo;
 import flixel.graphics.FlxGraphic;
 import flixel.FlxSprite;
 
-import ale.flixel.assets.AleAssets;
+import ale.flx.assets.AleAssets;
 
 class AleSprite extends FlxSprite
 {

@@ -1,9 +1,9 @@
-package ale.flixel;
+package ale.flx;
 
 import flixel.util.typeLimit.NextState;
 import flixel.FlxState;
 
-import ale.flixel.assets.AleAssets;
+import ale.flx.assets.AleAssets;
 
 class AleMainState extends FlxState
 {

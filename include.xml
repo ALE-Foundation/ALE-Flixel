@@ -4,7 +4,7 @@
     <haxelib name="lime"/>
     <haxelib name="flixel"/>
 
-	<app title="ALE Flixel" file="ALEFlixel" main="ale.flixel.AleMain" packageName="com.alefoundation.aleflixel" package="com.alefoundation.aleflixel" version="0.0.1" company="ALEFoundation"/>
+	<app title="ALE Flixel" file="ALEFlixel" main="ale.flx.AleMain" packageName="com.alefoundation.aleflixel" package="com.alefoundation.aleflixel" version="0.0.1" company="ALEFoundation"/>
 
 	<window width="1280" height="720" fps="120" background="#000000" hardware="true" vsync="false"/>
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true"/>
@@ -28,7 +28,7 @@
 
 	<haxedef name="message.reporting" value="pretty"/>
 
-	<haxeflag name="--macro" value="ale.flixel.macros.Macros.init()"/>
+	<haxeflag name="--macro" value="ale.flx.macros.AleMacros.init()"/>
 
     <section if="cpp">
         <haxedef name="HXCPP_CHECK_POINTER"/>

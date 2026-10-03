@@ -1,6 +1,6 @@
-package ale.flixel;
+package ale.flx;
 
-import ale.flixel.assets.AleAssets;
+import ale.flx.assets.AleAssets;
 
 import flixel.FlxG;
 

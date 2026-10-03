@@ -1,16 +1,16 @@
-package ale.flixel.macros;
+package ale.flx.macros;
 
 import haxe.macro.Compiler;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
-class OverridesMacro
+class AleOverrides
 {
     public static function init()
         for (cls in [
             'flixel.FlxSprite',
         ])
-            Compiler.addGlobalMetadata(cls, '@:build(ale.flixel.macros.OverridesMacro.build())', true);
+            Compiler.addGlobalMetadata(cls, '@:build(ale.flx.macros.AleOverrides.build())', true);
 
     macro public static function build():Array<Field>
     {

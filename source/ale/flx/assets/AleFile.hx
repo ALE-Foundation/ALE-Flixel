@@ -1,4 +1,4 @@
-package ale.flixel.assets;
+package ale.flx.assets;
 
 import sys.FileSystem;
 import sys.io.File;
