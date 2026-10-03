@@ -17,6 +17,8 @@
 	
     <set name="SWF_VERSION" value="11.8"/>
 
+	<set name="BUILD_DIR" value="export"/>
+
 	<haxedef name='lime_disable_assets_version'/>
 
 	<haxedef name="FLX_NO_DEBUG" unless="debug"/>
