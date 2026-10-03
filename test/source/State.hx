@@ -1,7 +1,7 @@
 package;
 
-import ale.flixel.AleSprite;
-import ale.flixel.AleState;
+import ale.flx.AleSprite;
+import ale.flx.AleState;
 
 class State extends AleState
 {

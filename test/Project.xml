@@ -4,8 +4,7 @@
 
 	<source path="source"/>
 
-    <assets path="assets" embed="true" if="ALE_FLX_NO_MODDING"/>
-    <assets path="assets" embed="false" unless="ALE_FLX_NO_MODDING"/>
+    <assets path="assets"/>
 
     <window width="960" height="720"/>
 
