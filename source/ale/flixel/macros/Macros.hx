@@ -5,5 +5,6 @@ class Macros
     public static function init()
     {
         OverridesMacro.init();
+        DefinesMacro.init();
     }
 }
