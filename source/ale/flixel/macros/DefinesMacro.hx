@@ -11,7 +11,6 @@ enum Define
 class DefinesMacro
 {
     static function define(def:Define, ?force:Bool = false, ?ifCond:Array<String>, ?ifNotCond:Array<String>)
-    {
         if (force || !Context.defined('ALE_FLX_NO_' + Std.string(def)))
         {
             if (ifCond != null)
@@ -26,7 +25,6 @@ class DefinesMacro
 
             Compiler.define('ALE_FLX_' + Std.string(def), null);
         }
-    }
 
     public static function init()
     {

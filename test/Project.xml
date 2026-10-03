@@ -4,9 +4,8 @@
 
 	<source path="source"/>
 
-    <haxedef name="ALE_FLX_NO_MODDING"/>
-
-	<assets path="assets"/>
+    <assets path="assets" embed="true" if="ALE_FLX_NO_MODDING"/>
+    <assets path="assets" embed="false" unless="ALE_FLX_NO_MODDING"/>
 
     <window width="960" height="720"/>
 
