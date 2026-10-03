@@ -1,0 +1,19 @@
+{
+    "name": "ale-flixel",
+    "url": "https://github.com/ALE-Foundation/ALE-Flixel",
+    "license": "MIT",
+    "tags": [
+        "haxe",
+        "haxeflixel",
+        "haxelib",
+        "flixel",
+        "cross-platform",
+        "framework"
+    ],
+    "classPath": "source/",
+    "description": "HaxeFlixel Framework",
+    "version": "0.1",
+    "contributors": [
+        "AlejoGDOfficial"
+    ]
+}
