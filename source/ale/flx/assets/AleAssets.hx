@@ -25,7 +25,7 @@ class AleAssets
     public static var config(default, null):Map<String, AleAssetsConfig<Dynamic>>;
 
     @:access(openfl.display.BitmapData)
-    public static function init()
+    static function init()
     {
         library = new AleAssetsLibrary(['assets']);
 

@@ -1,9 +1,10 @@
-package ale.flx;
+package ale.flx.config;
 
 import flixel.util.typeLimit.NextState;
 import flixel.FlxState;
 
 import ale.flx.assets.AleAssets;
+import ale.flx.debug.AleLogs;
 
 class AleMainState extends FlxState
 {
@@ -23,8 +24,12 @@ class AleMainState extends FlxState
         AleG.switchState(initialState);
     }
 
+    @:access(ale.flx.debug.AleLogs)
+    @:access(ale.flx.assets.AleAssets)
     function init()
     {
         AleAssets.init();
+
+        AleLogs.init();
     }
 }

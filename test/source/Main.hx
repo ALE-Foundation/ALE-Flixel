@@ -1,7 +1,6 @@
 package;
 
-import ale.flx.AleMain;
-import ale.flx.AleGame;
+import ale.flx.config.AleMain;
 
 class Main extends AleMain
 {

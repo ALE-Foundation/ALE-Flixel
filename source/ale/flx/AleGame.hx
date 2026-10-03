@@ -3,6 +3,8 @@ package ale.flx;
 import flixel.util.typeLimit.NextState;
 import flixel.FlxGame;
 
+import ale.flx.config.AleMainState;
+
 class AleGame extends FlxGame
 {
     public function new(?width:Int, ?height:Int, ?initialState:NextState, ?updateFramerate:Int = 60, drawFramerate:Int = 60, ?mainState:NextState -> AleMainState)

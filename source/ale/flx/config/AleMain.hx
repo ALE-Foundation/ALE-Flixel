@@ -1,4 +1,4 @@
-package ale.flx;
+package ale.flx.config;
 
 import openfl.display.Sprite;
 
