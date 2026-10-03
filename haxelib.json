@@ -13,6 +13,9 @@
     "classPath": "source/",
     "description": "HaxeFlixel Framework",
     "version": "0.1",
+    "dependencies": {
+        "flixel": ""
+    },
     "contributors": [
         "AlejoGDOfficial"
     ]
