@@ -11,6 +11,7 @@ class State extends AleState
     {
         super.create();
 
-        sprite = new AleSprite();
+        sprite = new AleSprite('oso');
+        add(sprite);
     }
 }

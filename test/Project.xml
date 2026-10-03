@@ -2,5 +2,11 @@
 <project>
     <haxelib name="ale-flixel"/>
 
+	<source path="source"/>
+    
+	<assets path="assets" embed="false"/>
+
+    <window width="960" height="720"/>
+
     <app main="Main"/>
 </project>
