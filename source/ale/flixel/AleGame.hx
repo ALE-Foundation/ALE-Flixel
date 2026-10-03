@@ -1,14 +1,17 @@
 package ale.flixel;
 
-import flixel.util.typeLimit.NextState.InitialState;
+import flixel.util.typeLimit.NextState;
 import flixel.FlxGame;
+
+import ale.flixel.AleG;
 
 class AleGame extends FlxGame
 {
-    public function new(?width:Int, ?height:Int, ?initialState:InitialState, ?updateFramerate:Int = 60, drawFramerate:Int = 60)
+    public function new(?width:Int, ?height:Int, ?initialState:NextState, ?updateFramerate:Int = 60, drawFramerate:Int = 60, ?mainState:NextState -> AleMainState)
     {
         initialState ??= AleState.new;
+        mainState ??= AleMainState.new;
 
-        super(width, height, initialState, updateFramerate, drawFramerate, true);
+        super(width, height, mainState.bind(initialState), updateFramerate, drawFramerate, true);
     }
 }
