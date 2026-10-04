@@ -10,5 +10,7 @@ class State extends AleState
 
         sprite = new AleSprite('oso');
         add(sprite);
+
+        print('oso');
     }
 }
