@@ -1,6 +1,7 @@
 package ale.flx.config;
 
 import flixel.util.typeLimit.NextState;
+import flixel.FlxSprite;
 import flixel.FlxState;
 
 import ale.flx.assets.AleAssets;
@@ -28,6 +29,8 @@ class AleMainState extends FlxState
     @:access(ale.flx.assets.AleAssets)
     function init()
     {
+        FlxSprite.defaultAntialiasing = true;
+
         AleAssets.init();
 
         AleLogs.init();

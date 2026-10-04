@@ -1,10 +1,13 @@
 package ale.flx.assets;
 
+import ale.flx.debug.AleLogs;
+
 import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 
 import openfl.display.BitmapData;
 import openfl.utils.Assets;
+import openfl.media.Sound;
 
 import lime.utils.Bytes;
 
@@ -34,8 +37,6 @@ class AleAssets
         final image:AleAssetsConfig<FlxGraphic> = {
             prefix: 'images/',
             suffix: '.png',
-            check: true,
-            cache: [],
             get: (path, _) -> {
                 final img = library.getImage(path);
 
@@ -65,9 +66,19 @@ class AleAssets
             }
         };
 
-        config[AleAssetType.IMAGE] = image;
+        config[IMAGE] = image;
+
+        final font:AleAssetsConfig<String> = {
+            prefix: 'fonts/',
+            get: (path, _) -> path
+        };
+
+        config[FONT] = font;
     }
 
+    public static function getPath(path:String):String
+        return library.getPath(path);
+    
     public static function exists(path:String):Bool
         return library.exists(path, null);
 
@@ -77,12 +88,17 @@ class AleAssets
     public static function getBytes(path:String):Bytes
         return library.getBytes(path);
 
-    public static function get(file:String, type:String, ?persist:Bool = false, ?args:Array<Dynamic>, ?cache:Bool = true):Dynamic
+    public static function get(file:String, type:String, persist:Bool = false, missingPrint:Bool = true, ?args:Array<Dynamic>, ?cache:Bool = true):Dynamic
     {
         final data = config[type];
 
         if (data == null)
             return null;
+
+        data.suffix ??= '';
+        data.prefix ??= '';
+        data.check ??= true;
+        data.cache ??= [];
 
         final path:String = data.prefix + file + data.suffix;
 
@@ -90,7 +106,12 @@ class AleAssets
             return data.cache[path].content;
 
         if (data.check && !exists(path))
+        {
+            if (missingPrint)
+                AleLogs.print(path, MISSING_FILE);
+
             return null;
+        }
 
         final res = data.get(path, args);
 
@@ -103,16 +124,28 @@ class AleAssets
         return res;
     }
 
-    public static function image(path:String)
-        return get(path, AleAssetType.IMAGE);
+    public static function image(path:String, ?persist:Bool, ?missingPrint:Bool):FlxGraphic
+        return get(path, IMAGE, missingPrint, persist);
+
+    public static function audio(path:String, ?persist:Bool, ?missingPrint:Bool):Sound
+        return get(path, AUDIO, missingPrint, persist);
+
+    public static function sound(path:String, ?persist:Bool, ?missingPrint:Bool):Sound
+        return audio('sounds/' + path, persist, missingPrint);
+
+    public static function music(path:String, ?persist:Bool, ?missingPrint:Bool):Sound
+        return audio('music/' + path, persist, missingPrint);
+
+    public static function font(path:String, ?persist:Bool, ?missingPrint:Bool):String
+        return get(path, FONT, persist, missingPrint);
 }
 
 
 typedef AleAssetsConfig<T> = {
     ?suffix:String,
     ?prefix:String,
-    check:Bool,
-    cache:Map<String, AleAssetsCache<T>>,
+    ?check:Bool,
+    ?cache:Map<String, AleAssetsCache<T>>,
     get:String -> Null<Array<Dynamic>> -> T
 }
 
@@ -125,4 +158,6 @@ typedef AleAssetsCache<T> = {
 enum abstract AleAssetType(String) from String to String
 {
     var IMAGE = 'image';
+    var FONT = 'font';
+    var AUDIO = 'sound';
 }

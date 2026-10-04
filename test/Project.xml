@@ -5,6 +5,7 @@
 	<source path="source"/>
 
     <assets path="assets"/>
+    <assets path="assets" preload="true" if="js"/>
 
     <window width="960" height="720"/>
 

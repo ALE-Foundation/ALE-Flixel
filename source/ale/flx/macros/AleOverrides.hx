@@ -9,6 +9,7 @@ class AleOverrides
     public static function init()
         for (cls in [
             'flixel.FlxSprite',
+            'flixel.text.FlxText'
         ])
             Compiler.addGlobalMetadata(cls, '@:build(ale.flx.macros.AleOverrides.build())', true);
 
@@ -16,12 +17,37 @@ class AleOverrides
     {
         var fields = Context.getBuildFields();
 
+        final localType = Context.getLocalType();
+
+        switch (localType)
+        {
+            case TInst(_, _):
+
+            default:
+                return fields;
+        }
+
         final cls = Context.getLocalClass().get();
         
         final fullName = cls.pack.join('.') + '.' + cls.name;
 
         switch (fullName)
         {
+            case 'flixel.text.FlxText':
+                for (f in fields)
+                    if (f.name == 'getFontHelper')
+                    {
+                        f.kind = FFun({
+                            args: [{name: 'font', type: macro:String}],
+                            ret: macro:String,
+                            expr: macro {
+                                return font ?? FlxAssets.FONT_DEFAULT;
+                            }
+                        });
+
+                        break;
+                    }
+
             case 'flixel.FlxSprite':
                 for (f in fields)
                 {

@@ -14,43 +14,37 @@ class AleLogs
 
     static function init()
         config = [
-            AleLogsType.ERROR => {
+            ERROR => {
                 title: 'ERROR',
                 color: 0xFFFF5555
             },
-            AleLogsType.WARNING => {
+            WARNING => {
                 title: 'WARNING',
                 color: 0xFFFFA500
             },
-            AleLogsType.DEPRECATED => {
+            DEPRECATED => {
                 title: 'DEPRECATED',
                 color: 0xFF8000
             },
-            AleLogsType.TRACE => {
+            TRACE => {
                 title: 'TRACE',
                 color: 0xFFFFFFFF
             },
-            AleLogsType.MISSING_FILE => {
+            MISSING_FILE => {
                 title: 'MISSING FILE',
                 color: 0xFFFF7F00
             },
-            AleLogsType.MISSING_FOLDER => {
+            MISSING_FOLDER => {
                 title: 'MISSING FOLDER',
                 color: 0xFFFF7F00
             }
         ];
 
-    public static function print(msg:Dynamic, ?type:String = AleLogsType.TRACE):String
+    public static function print(msg:Dynamic, ?type:String = TRACE):String
     {
-        final message:StringBuf = new StringBuf();
-        
-        final data:AleLogsConfig = config[type] ?? config[AleLogsType.TRACE];
+        final data:AleLogsConfig = config[type] ?? config[TRACE];
 
-        message.add(colorToAnsi(data.title, data.color));
-        message.add(colorToAnsi(' | ', FlxColor.GRAY));
-        message.add(msg);
-
-        final result:String = message.toString();
+        final result:String = colorToAnsi(data.title, data.color) + colorToAnsi(' | ', FlxColor.GRAY) + msg;
 
         #if sys
         Sys.println(result);

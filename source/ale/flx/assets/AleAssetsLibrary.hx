@@ -176,12 +176,16 @@ class AleAssetsLibrary extends AssetLibrary
         {
             case BINARY:
                 getBytes(id);
+
             case TEXT:
                 getText(id);
+
             case IMAGE:
                 getImage(id);
+                
             case SOUND, MUSIC:
                 getAudioBuffer(id);
+
             case FONT:
                 getFont(id);
             default:
