@@ -10,7 +10,7 @@ class State extends AleState
     {
         super.create();
 
-        sprite = new AleSprite('oso');
+        sprite = typedAdd(new AleSprite('oso'));
 
         text = new AleText(10, sprite.height + 20, 'Masha', 0, 60, FlxColor.CYAN, 'amaticSC.ttf');
         add(text);
