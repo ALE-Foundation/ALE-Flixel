@@ -11,6 +11,9 @@ class State extends AleState
         sprite = new AleSprite('oso');
         add(sprite);
 
-        print('oso');
+        // Non-existing Image
+        AleAssets.image('osos');
+
+        print('Hello World!');
     }
 }
