@@ -33,21 +33,6 @@ class AleOverrides
 
         switch (fullName)
         {
-            case 'flixel.text.FlxText':
-                for (f in fields)
-                    if (f.name == 'getFontHelper')
-                    {
-                        f.kind = FFun({
-                            args: [{name: 'font', type: macro:String}],
-                            ret: macro:String,
-                            expr: macro {
-                                return font ?? FlxAssets.FONT_DEFAULT;
-                            }
-                        });
-
-                        break;
-                    }
-
             case 'flixel.FlxSprite':
                 for (f in fields)
                 {
