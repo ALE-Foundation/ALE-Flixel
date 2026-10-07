@@ -34,5 +34,10 @@ class AleMainState extends FlxState
         AleAssets.init();
 
         AleLogs.init();
+
+        #if ale_ui
+        ale.ui.Config.reset();
+        ale.ui.Config.FONT = 'ale/ui/fonts/montserrat.ttf';
+        #end
     }
 }
