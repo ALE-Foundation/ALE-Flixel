@@ -3,6 +3,7 @@ package ale.flx.debug;
 import ale.flx.utils.AleColorUtil.colorToAnsi;
 
 import flixel.util.FlxColor;
+import flixel.FlxG;
 
 #if !sys
 import haxe.Log;
@@ -12,6 +13,7 @@ class AleLogs
 {
     static var config:Map<String, AleLogsConfig>;
 
+    @:allow(ale.flx.config.AleMain)
     static function init()
         config = [
             ERROR => {
@@ -53,6 +55,13 @@ class AleLogs
         #end
 
         return result;
+    }
+
+    public static function popUp(title:String, message:String, ?type:String)
+    {
+        print(title + ' | ' + message, type);
+
+        FlxG.stage.window.alert(message, title);
     }
 }
 

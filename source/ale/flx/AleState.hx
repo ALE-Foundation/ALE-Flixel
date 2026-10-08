@@ -4,6 +4,8 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxState;
 import flixel.FlxBasic;
 
+import ale.flx.assets.AleAssets;
+
 class AleState extends FlxState
 {
     public function addBehind(target:FlxBasic, obj:FlxBasic):FlxBasic
@@ -28,4 +30,13 @@ class AleState extends FlxState
 
     public function typedAdd<T:FlxBasic>(obj:T):T
         return cast add(obj);
+
+    public var allowMemoryCleaning:Bool = true;
+
+    override function destroy()
+    {
+        super.destroy();
+
+        AleAssets.clear(allowMemoryCleaning);
+    }
 }

@@ -1,11 +1,9 @@
 package ale.flx.config;
 
 import flixel.util.typeLimit.NextState;
-import flixel.FlxSprite;
 import flixel.FlxState;
 
-import ale.flx.assets.AleAssets;
-import ale.flx.debug.AleLogs;
+import ale.flx.AleG;
 
 class AleMainState extends FlxState
 {
@@ -20,24 +18,10 @@ class AleMainState extends FlxState
 
     override function create()
     {
-        init();
+        super.create();
+
+        AleG.main.postReset();
 
         AleG.switchState(initialState);
-    }
-
-    @:access(ale.flx.debug.AleLogs)
-    @:access(ale.flx.assets.AleAssets)
-    function init()
-    {
-        FlxSprite.defaultAntialiasing = true;
-
-        AleAssets.init();
-
-        AleLogs.init();
-
-        #if ale_ui
-        ale.ui.Config.reset();
-        ale.ui.Config.FONT = 'ale/ui/fonts/montserrat.ttf';
-        #end
     }
 }

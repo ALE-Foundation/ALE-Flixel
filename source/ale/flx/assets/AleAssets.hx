@@ -3,6 +3,7 @@ package ale.flx.assets;
 import ale.flx.debug.AleLogs;
 
 import flixel.graphics.FlxGraphic;
+import flixel.util.FlxDestroyUtil;
 import flixel.FlxG;
 
 import openfl.display.BitmapData;
@@ -10,6 +11,10 @@ import openfl.utils.Assets;
 import openfl.media.Sound;
 
 import lime.utils.Bytes;
+
+#if cpp
+import cpp.vm.Gc;
+#end
 
 class AleAssets
 {
@@ -27,6 +32,7 @@ class AleAssets
 
     public static var config(default, null):Map<String, AleAssetsConfig<Dynamic>>;
 
+    @:allow(ale.flx.config.AleMain)
     @:access(openfl.display.BitmapData)
     static function init()
     {
@@ -66,14 +72,60 @@ class AleAssets
             }
         };
 
-        config[IMAGE] = image;
+        addType(IMAGE, image);
 
         final font:AleAssetsConfig<String> = {
             prefix: 'fonts/',
             get: (path, _) -> path
         };
 
-        config[FONT] = font;
+        addType(FONT, font);
+    }
+    
+    static function addType(id:String, data:AleAssetsConfig<Dynamic>):AleAssetsConfig<Dynamic>
+    {
+        data.suffix ??= '';
+        data.prefix ??= '';
+        data.check ??= true;
+        data.cache ??= [];
+
+        config[id] = data;
+
+        return data;
+    }
+
+    public static function clear(cleanAll:Bool, ?permanent:Bool = false)
+    {
+        if (config == null)
+            return;
+
+        for (obj in config)
+            if (cleanAll || obj.forceCleaning)
+                for (id in obj.cache.keys())
+                {
+                    var result:Dynamic = obj.cache[id];
+
+                    if (!result.permanent || permanent)
+                    {
+                        if (result.content is IFlxDestroyable)
+                        {
+                            @:privateAccess
+                            FlxG.bitmap._cache.remove(id);
+
+                            FlxDestroyUtil.destroy(result.content);
+                        }
+
+                        obj.cache.remove(id);
+                    }
+                }
+
+        FlxG.bitmap.clearUnused();
+        FlxG.bitmap.clearCache();
+
+        #if cpp
+        Gc.run(true);
+        Gc.compact();
+        #end
     }
 
     public static function getPath(path:String):String
@@ -94,11 +146,6 @@ class AleAssets
 
         if (data == null)
             return null;
-
-        data.suffix ??= '';
-        data.prefix ??= '';
-        data.check ??= true;
-        data.cache ??= [];
 
         final path:String = data.prefix + file + data.suffix;
 
@@ -146,6 +193,7 @@ typedef AleAssetsConfig<T> = {
     ?prefix:String,
     ?check:Bool,
     ?cache:Map<String, AleAssetsCache<T>>,
+    ?forceCleaning:Bool,
     get:String -> Null<Array<Dynamic>> -> T
 }
 

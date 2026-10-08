@@ -2,9 +2,10 @@ package ale.flx.macros;
 
 class AleMacros
 {
-    public static function init()
+    public static function init(main:String)
     {
-        AleOverrides.init();
         AleDefines.init();
+        AleOverrides.init();
+        AleVerify.init(main);
     }
 }
