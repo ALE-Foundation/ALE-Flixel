@@ -1,21 +1,21 @@
 package ale.flx;
 
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.FlxState;
+import flixel.FlxSubState;
 import flixel.FlxBasic;
 import flixel.FlxG;
 
 import ale.flx.util.AleGroupUtil;
-import ale.flx.assets.AleAssets;
 
-class AleState extends FlxState implements ale.flx.interfaces.IAleState
+class AleSubState extends FlxSubState implements ale.flx.interfaces.IAleState
 {
-    public var camGame:AleCamera;
-    public var camHUD:AleCamera;
+    public var subCamera:AleCamera;
 
     var allowCamerasInit:Bool = true;
 
-    override function create():Void
+    var allowCamerasOverriding:Bool = true;
+
+    override function create()
     {
         super.create();
 
@@ -23,25 +23,23 @@ class AleState extends FlxState implements ale.flx.interfaces.IAleState
             initCameras();
     }
 
-    function initCameras():Void
+    function initCameras()
+		FlxG.cameras.add(subCamera = new AleCamera(), false);
+
+    override function add(obj:FlxBasic):FlxBasic
     {
-		FlxG.cameras.reset(camGame = new AleCamera());
-		FlxG.cameras.setDefaultDrawTarget(camGame, true);
-		
-		FlxG.cameras.add(camHUD = new AleCamera(), false);
+        if (subCamera != null && allowCamerasOverriding)
+            obj.camera = subCamera;
+
+        return super.add(obj);
     }
 
-    public var allowMemoryCleaning:Bool = true;
-
-    override function destroy():Void
-    {
-        super.destroy();
-
-        cleanMemory();
-    }
-
-    function cleanMemory():Void
-        AleAssets.clear(allowMemoryCleaning);
+	override function destroy()
+	{
+        FlxG.cameras.remove(subCamera, true);
+        
+		super.destroy();
+	}
 
     public inline function addBehind<T:FlxBasic>(target:FlxBasic, obj:T):T
         return AleGroupUtil.addBehind(this, target, obj);

@@ -1,15 +1,9 @@
 package;
 
-import ale.ui.objects.*;
+import ale.flx.AleSubState;
+import ale.flx.AleState;
 
-class State extends AleState
-{
-    var sprite:AleSprite;
+import ale.flx.group.AleTypedGroup;
+import ale.flx.group.AleGroup;
 
-    var text:AleText;
-
-    override function create()
-    {
-        super.create();
-    }
-}
+class State extends AleState {}

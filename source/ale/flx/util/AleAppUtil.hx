@@ -1,4 +1,4 @@
-package ale.flx.utils;
+package ale.flx.util;
 
 import flixel.system.scaleModes.RatioScaleMode;
 import flixel.FlxG;

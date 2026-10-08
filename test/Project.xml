@@ -10,5 +10,7 @@
 
     <window width="960" height="720"/>
 
+	<haxeflag name="-dce" value="no"/>
+
     <app main="Main"/>
 </project>

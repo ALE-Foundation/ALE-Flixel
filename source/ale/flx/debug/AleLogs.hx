@@ -1,6 +1,6 @@
 package ale.flx.debug;
 
-import ale.flx.utils.AleColorUtil.colorToAnsi;
+import ale.flx.util.AleColorUtil.colorToAnsi;
 
 import flixel.util.FlxColor;
 import flixel.FlxG;

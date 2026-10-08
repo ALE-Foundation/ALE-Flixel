@@ -17,7 +17,7 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 
 import ale.flx.assets.AleAssets;
-import ale.flx.utils.AleAppUtil;
+import ale.flx.util.AleAppUtil;
 import ale.flx.debug.AleLogs;
 import ale.flx.AleG;
 
