@@ -8,6 +8,8 @@
     <assets path="assets"/>
     <assets path="assets" preload="true" if="js"/>
 
+	<haxedef name="ALE_FLX_MODDING"/>
+
     <window width="960" height="720"/>
 
 	<haxeflag name="-dce" value="no"/>
